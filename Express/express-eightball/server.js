@@ -22,11 +22,11 @@ function getRandomInt(max) {
 var randomInt = getRandomInt(20);
 var json = require(__dirname + '/answers.json');
 
-app.post('/answers', (req, res) => {
+/*app.post('/answers', (req, res) => {
 	console.log(json.answers[randomInt])
-})
+})*/
 
-app.get('/', (req, res) => {
-	res.sendFile(__dirname + '/index.html')
+app.post('/answers', (req, res) => {
+	res.sendFile(__dirname + '/answers.html')
 	res.send(json.answers[randomInt])
 })
