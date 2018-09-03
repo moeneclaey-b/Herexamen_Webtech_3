@@ -21,12 +21,23 @@ function getRandomInt(max) {
 
 var randomInt = getRandomInt(20);
 var json = require(__dirname + '/answers.json');
+var question = null;
+var rand = randomInt;
 
 /*app.post('/answers', (req, res) => {
 	console.log(json.answers[randomInt])
 })*/
 
 app.post('/answers', (req, res) => {
-	res.sendFile(__dirname + '/answers.html')
-	res.send(json.answers[randomInt])
+	window.sessionStorage.setItem('question', JSON.stringify(req.body))
+	window.sessionStorage.setItem('answer', JSON.stringify(rand))
+	var quest = JSON.parse(window.sessionStorage.getItem('question'))
+	var answer = JSON.parse(window.sessionStorage.getItem('answer'))
+	if (req.body == window.sessionStorage.quest){
+		res.sendFile(__dirname + '/answers.html')
+		res.send(json.answers[window.sessionStorage.answer])
+	}else{
+		res.sendFile(__dirname + '/answers.html')
+		res.send(json.answers[randomInt])
+	}
 })
