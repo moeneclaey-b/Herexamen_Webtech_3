@@ -14,3 +14,19 @@ app.use(express.static('public'));
 app.get('/', (req, res) => {
 	res.sendFile(__dirname + '/index.html')
 })
+
+function getRandomInt(max) {
+	return Math.floor(Math.random() * Math.floor(max));
+}
+
+var randomInt = getRandomInt(20);
+var json = require(__dirname + '/answers.json');
+
+app.post('/answers', (req, res) => {
+	console.log(json.answers[randomInt])
+})
+
+app.get('/', (req, res) => {
+	res.sendFile(__dirname + '/index.html')
+	res.send(json.answers[randomInt])
+})
